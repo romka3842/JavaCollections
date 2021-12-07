@@ -37,17 +37,23 @@ public class CarArrayList implements CarList
 
     @Override
     public boolean removeAt(int index) {
+        for (int i = 0; i < size - 1;i++)
+        {
+            array[i]=array[i+1];
+        }
+        size--;
         return true;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public void clear() {
-
+        array = new Car[10];
+        size = 0;
     }
 
     private void checkIndex(int index)
@@ -56,6 +62,4 @@ public class CarArrayList implements CarList
             throw new IndexOutOfBoundsException();
         }
     }
-
-    int n = 5;
 }
