@@ -8,7 +8,7 @@ public class CarListTest {
 
     @Before
     public void setUp() throws Exception {
-        carList = new CarArrayList();
+        carList = new CarLinkedList();
         for (int i = 0; i<100;i++)
         {
             carList.add(new Car("Brand"+i,i));
@@ -57,7 +57,7 @@ public class CarListTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenIndexOutOfBounds()
     {
-        carList.get(100);
+        carList.get(101);
     }
 
     @Test

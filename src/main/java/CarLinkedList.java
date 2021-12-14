@@ -6,7 +6,8 @@ public class CarLinkedList implements CarList {
 
     @Override
     public Car get(int index) {
-        return null;
+        checkIndex(index);
+        return getNode(index).value;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class CarLinkedList implements CarList {
         {
             if(node.value.equals(car))
             {
-                removeAt(i);
+                return removeAt(i);
             }
             node = node.next;
         }
@@ -42,6 +43,7 @@ public class CarLinkedList implements CarList {
     @Override
     public boolean removeAt(int index) {
 
+        checkIndex(index);
         Node node = getNode(index);
         Node nodeNext = node.next;
         Node nodePrevious =  node.previous;
@@ -65,12 +67,14 @@ public class CarLinkedList implements CarList {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public void clear() {
-
+        first = null;
+        last=null;
+        size=0;
     }
 
     @Override
