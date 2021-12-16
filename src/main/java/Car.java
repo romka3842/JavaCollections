@@ -1,5 +1,10 @@
 public class Car {
     private String brand;
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     private int number;
 
     public Car(String brand, int number) {
@@ -14,4 +19,5 @@ public class Car {
     public int getNumber() {
         return number;
     }
+
 }

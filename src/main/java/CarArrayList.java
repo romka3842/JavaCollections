@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Arrays;
 
 public class CarArrayList implements CarList
@@ -16,10 +14,7 @@ public class CarArrayList implements CarList
 
     @Override
     public void add(Car car) {
-        if(size>=array.length)
-        {
-            array= Arrays.copyOf(array,array.length*2);
-        }
+        increaseArray();
         array[size] = car;
         size++;
     }
@@ -37,10 +32,8 @@ public class CarArrayList implements CarList
 
     @Override
     public boolean removeAt(int index) {
-        for (int i = 0; i < size - 1;i++)
-        {
-            array[i]=array[i+1];
-        }
+        checkIndex(index);
+        System.arraycopy(array, index + 1, array, index, size - index);
         size--;
         return true;
     }
@@ -56,10 +49,27 @@ public class CarArrayList implements CarList
         size = 0;
     }
 
+    @Override
+    public void add(Car car, int index) {
+        increaseArray();
+        checkIndex(index);
+        System.arraycopy(array, index, array, index + 1, size - index);
+        array[index] = car;
+        size++;
+    }
+
     private void checkIndex(int index)
     {
         if(index < 0 || index>=size) {
             throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void increaseArray()
+    {
+        if(size>=array.length)
+        {
+            array= Arrays.copyOf(array,array.length*2);
         }
     }
 }
