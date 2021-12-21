@@ -1,14 +1,13 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CarSetTest {
-
+public class CarSetTest {
     private CarHashSet carSet;
 
-    @BeforeEach
-    void setUp() throws Exception{
+    @Before
+    public void setUp() throws Exception{
         carSet = new CarHashSet();
         for (int i = 0; i<100;i++)
         {
@@ -17,21 +16,26 @@ class CarSetTest {
     }
 
     @Test
-    void ifAddSameValue() {
-        Car car = new Car("Brand1",1);
-        assertFalse(carSet.add(car));
+    public void whenAddThreeSimilarObjectsThenSizeIncreaseByOne() {
 
+        assertEquals(100,carSet.size());
+        assertTrue(carSet.add(new Car("BMW",10)));
+        assertFalse(carSet.add(new Car("BMW",10)));
+        assertFalse(carSet.add(new Car("BMW",10)));
+        assertEquals(101,carSet.size());
     }
 
     @Test
-    void remove() {
+    public void thenSetClearedThenSize0() {
+        carSet.clear();
+        assertEquals(0,carSet.size());
     }
 
     @Test
-    void size() {
-    }
-
-    @Test
-    void clear() {
+    public void whenElementRemovedThenSizeDecreased() {
+        assertTrue(carSet.remove(new Car("Brand30",30)));
+        assertEquals(99,carSet.size());
+        assertFalse(carSet.remove(new Car("Brand30",30)));
+        assertEquals(99,carSet.size());
     }
 }
