@@ -24,4 +24,13 @@ public class CollectionTest {
         assertFalse(carCollection.contains(new Car("Brand200",200)));
     }
 
+    @Test
+    public void ForEachTest(){
+        int index = 0;
+        for (Car car : carCollection){
+            index++;
+        }
+        assertEquals(100,index);
+    }
+
 }
